@@ -7,18 +7,6 @@ Platform.userExtensionDir;
 // this block should start the server and instrument, which will be muted:
 (
 // settings for MOTU interface.
-s.options.numInputBusChannels = 2;
-s.options.numOutputBusChannels = 2;
-// the three pickups, relative to SoundIn numbering
-~pup_buses = [0,1,2]; // MOTU analog input 1,2,3
-// output to transducer
-~output_bus = 0; // MOTU analog output 1
-// *optional* stereo mic channels for recording. does not affect instrument sound.
-~room_buses = [0,1]; //MOTU analog input 4,5
-s.options.blockSize = 4;
-s.options.sampleRate = 48000;
-
-/*// settings for MOTU interface.
 s.options.numInputBusChannels = 9;
 s.options.numOutputBusChannels = 3;
 // the three pickups, relative to SoundIn numbering
@@ -26,12 +14,12 @@ s.options.numOutputBusChannels = 3;
 // output to transducer
 ~output_bus = 2; // MOTU analog output 1
 // *optional* stereo mic for recording. does not affect instrument sound.
-~room_buses = [7,8]; //MOTU analog input 4,5*/
+~room_buses = [7,8]; //MOTU analog input 4,5
 
 // these can be changed if necessary,
 // but the feedback character will be affected
-// s.options.blockSize = 4;
-// s.options.sampleRate = 96000;
+s.options.blockSize = 4;
+s.options.sampleRate = 96000;
 
 s.waitForBoot({
 
