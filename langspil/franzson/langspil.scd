@@ -67,7 +67,7 @@ s.waitForBoot({
         var pup2 = SoundIn.ar(~pup_buses[1]);
         var pup3 = SoundIn.ar(~pup_buses[2]);
 
-        var pups = [pup1, pup2/4, pup3] * drive;
+        var pups = [pup1*2, pup2/6, pup3*2] * drive;
         var f0_raw = Pitch.kr(pups, 200, 30, 3000,
             clar:1, ampThreshold:1e-4, execFreq:200).flop;
         var f0s = Lag.ar(K2A.ar(f0_raw[0].log), pitch_lag).exp;
@@ -112,7 +112,7 @@ s.waitForBoot({
     }).play;
 
     //define patches
-    ~play = {~synth.set(
+    /*~play = {~synth.set(
         \shift_onsets, 3,
         \shift_hz, -1e-2,
         \shift_ratio, 1/2,
@@ -125,10 +125,43 @@ s.waitForBoot({
         \thresh, 3e-2,
         \comp_exponent, 1,
         \low_pass, 1500
+    )};*/
+
+    ~play = {~synth.set(
+        \shift_onsets, 3,
+        \shift_hz, -1e-2,
+        \shift_ratio, 1/2,
+        \hz_mix, 0.5,
+        \ratio_mix, 0.05,
+        \onsets_mix, 0.2,
+        \pitch_lag, 3,
+        \drive, 3.5,//3.5,
+        \gain, 36,//48,
+        \thresh, 3e-2,
+        \comp_exponent, 1,
+        \low_pass, 250
     )};
+
 
 });
 )
+
+/*(
+~synth.set(
+        \shift_onsets, 3,
+        \shift_hz, -1e-2,
+        \shift_ratio, 1/2,
+        \hz_mix, 0.5,
+        \ratio_mix, 0.05,
+        \onsets_mix, 0.2,
+        \pitch_lag, 3,
+        \drive, 3.5,//3.5,
+        \gain, 36,//48,
+        \thresh, 3e-2,
+        \comp_exponent, 1,
+        \low_pass, 250
+    )
+)*/
 
 // RUN THIS to unmute the instrument:
 ~play.();
